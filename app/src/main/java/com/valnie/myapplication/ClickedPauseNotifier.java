@@ -9,7 +9,9 @@ public class ClickedPauseNotifier {
     }
     public void playPause(){
         if(isTriggered){
+            isTriggered = false;
             mainEvent.setCountdown();
+
         }
     }
 }

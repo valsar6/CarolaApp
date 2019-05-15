@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Matrix;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +15,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Locale;
 import java.util.Timer;
 
 
-public class MainActivity extends AppCompatActivity implements publicInterfaces.pauseButtonCallback {
+public class MainActivity extends AppCompatActivity implements PauseFragment.PauseButtonCallback {
 
     //Il bottoncino di start dello splash screen
     private ImageButton startButton;
@@ -81,11 +84,10 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
         cat = (ImageView) findViewById(R.id.cat);
         time_left = STARTING_TIME;
         timerText = (TextView) findViewById(R.id.countdown);
-
-
+//        startTimer();
+        myStart();
         playButtons();
         myPause();
-        startTimer();
     }
 
 
@@ -108,6 +110,16 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
         });
     }
 
+    protected void myStart(){
+        startButton = (ImageButton) findViewById(R.id.start);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isPlaying)
+                    startTimer();
+            }
+        });
+    }
 
     // Tutta quest'area si occupa dei movimenti dei bottoni di gioco e di cosa 'azionano'
 
@@ -124,7 +136,8 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
 
     @Override
     public void clickedPause() {
-        System.out.println("ClickedPause");
+//        Toast.makeText(getBaseContext(),"onCallback Called",Toast.LENGTH_LONG).show();
+        setCountdown();
     }
 
 
@@ -145,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
                             case MotionEvent.ACTION_DOWN:
                                 verse = NEGATIVE;
                                 pos = Y_POS;
+                                rotateCat(0);
                                 if (mHandler != null) return true;
                                 mHandler = new Handler();
                                 mHandler.postDelayed(mAction, 500);
@@ -170,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
                             case MotionEvent.ACTION_DOWN:
                                 verse = POSITIVE;
                                 pos = Y_POS;
+                                rotateCat(180);
                                 if (mHandler != null) return true;
                                 mHandler = new Handler();
                                 mHandler.postDelayed(mAction, 500);
@@ -190,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
                             case MotionEvent.ACTION_DOWN:
                                 verse = POSITIVE;
                                 pos = X_POS;
+                                rotateCat(270);
                                 if (mHandler != null) return true;
                                 mHandler = new Handler();
                                 mHandler.postDelayed(mAction, 500);
@@ -208,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
                     case R.id.leftbutton:
                         switch (motion.getAction()) {
                             case MotionEvent.ACTION_DOWN:
+                                rotateCat(90);
                                 verse = NEGATIVE;
                                 pos = X_POS;
                                 if (mHandler != null) return true;
@@ -299,7 +316,14 @@ public class MainActivity extends AppCompatActivity implements publicInterfaces.
 
     }
 
-
+    private void rotateCat(int angle){
+        Matrix matrix = new Matrix();
+        float pivotX = cat.getDrawable().getBounds().width()/2;
+        float pivotY = cat.getDrawable().getBounds().height()/2;
+        cat.setScaleType(ImageView.ScaleType.MATRIX);   //required
+        matrix.postRotate((float) angle, pivotX, pivotY);
+        cat.setImageMatrix(matrix);
+    }
     /**
      * Questo runnable ti permette di controllare la velocità di movimento del nostro gattino.
      */
