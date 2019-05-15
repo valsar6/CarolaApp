@@ -18,7 +18,7 @@ import java.util.Locale;
 import java.util.Timer;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements publicInterfaces.pauseButtonCallback {
 
     //Il bottoncino di start dello splash screen
     private ImageButton startButton;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //Bottoni che uso nel livello di gioco
     private ImageButton pauseButton;
     private ImageButton tastoni;
-
+    private ClickedPauseNotifier cpn;
     private final int POSITIVE = 1;
     private final int NEGATIVE = -1;
     private final char X_POS = 'x';
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     protected void startScene() {
         System.out.println("I'm changing!!");
         setContentView(R.layout.game_level);
+        cpn = new ClickedPauseNotifier(this);
         cat = (ImageView) findViewById(R.id.cat);
         time_left = STARTING_TIME;
         timerText = (TextView) findViewById(R.id.countdown);
@@ -119,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
         tastoni = (ImageButton) findViewById(R.id.tastoni);
 
 
+    }
+
+    @Override
+    public void clickedPause() {
+        System.out.println("ClickedPause");
     }
 
 
@@ -238,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 //In questa zona ho dichiarato i metodi utili per creare il countdown
 
 
-    private void setCountdown() {
+    public void setCountdown() {
         PauseFragment pause = new PauseFragment();
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
