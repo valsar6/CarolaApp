@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/startframe"
+        app:layout_constraintStart_toStartOf="@+id/startframe"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gatto" />
+
+    <FrameLayout
+        android:id="@+id/startframe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/hudlevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/hud"
+            android:cropToPadding="false"
+
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/schermatatelefonogiocabile" />
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/pausa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@null"
+        android:contentDescription="pausa"
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tastoni"
+        app:srcCompat="@drawable/bottonepausa" />
+
+    <ImageButton
+        android:id="@+id/start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/startframe"
+        app:srcCompat="@drawable/bottonestart" />
+
+    <TextView
+        android:id="@+id/countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/upbutton"
+        android:layout_width="74dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="60dp"
+        android:background="@null"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/pausa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/startframe" />
+
+    <Button
+        android:id="@+id/downbutton"
+        android:layout_width="74dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upbutton" />
+
+    <Button
+        android:id="@+id/rightbutton"
+        android:layout_width="81dp"
+        android:layout_height="67dp"
+        android:background="@null"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.706"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upbutton" />
+
+    <Button
+        android:id="@+id/leftbutton"
+        android:layout_width="81dp"
+        android:layout_height="67dp"
+        android:background="@null"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upbutton" />
+
+    <ImageButton
+        android:id="@+id/tastoni"
+        android:layout_width="209dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="12dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/pulsantieracentro" />
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
