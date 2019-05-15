@@ -321,6 +321,7 @@ public class MainActivity extends AppCompatActivity implements PauseFragment.Pau
         float pivotX = cat.getDrawable().getBounds().width()/2;
         float pivotY = cat.getDrawable().getBounds().height()/2;
         cat.setScaleType(ImageView.ScaleType.MATRIX);   //required
+
         matrix.postRotate((float) angle, pivotX, pivotY);
         cat.setImageMatrix(matrix);
     }
