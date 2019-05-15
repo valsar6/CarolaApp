@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -205,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements PauseFragment.Pau
                             case MotionEvent.ACTION_DOWN:
                                 verse = POSITIVE;
                                 pos = X_POS;
-                                rotateCat(270);
+                                rotateCat(90);
                                 if (mHandler != null) return true;
                                 mHandler = new Handler();
                                 mHandler.postDelayed(mAction, 500);
@@ -224,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements PauseFragment.Pau
                     case R.id.leftbutton:
                         switch (motion.getAction()) {
                             case MotionEvent.ACTION_DOWN:
-                                rotateCat(90);
+                                rotateCat(270);
                                 verse = NEGATIVE;
                                 pos = X_POS;
                                 if (mHandler != null) return true;
@@ -317,13 +319,13 @@ public class MainActivity extends AppCompatActivity implements PauseFragment.Pau
     }
 
     private void rotateCat(int angle){
-        Matrix matrix = new Matrix();
-        float pivotX = cat.getDrawable().getBounds().width()/2;
-        float pivotY = cat.getDrawable().getBounds().height()/2;
-        cat.setScaleType(ImageView.ScaleType.MATRIX);   //required
-
-        matrix.postRotate((float) angle, pivotX, pivotY);
-        cat.setImageMatrix(matrix);
+        cat.setRotation(angle);
+//        Matrix matrix = new Matrix();
+//        float pivotX = cat.getDrawable().getBounds().width()/2;
+//        float pivotY = cat.getDrawable().getBounds().height()/2;
+//        cat.setScaleType(ImageView.ScaleType.MATRIX);   //required
+//        matrix.postRotate((float) angle, pivotX, pivotY);
+//        cat.setImageMatrix(matrix);
     }
     /**
      * Questo runnable ti permette di controllare la velocità di movimento del nostro gattino.
